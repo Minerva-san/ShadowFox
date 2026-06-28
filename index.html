@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light shadow fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">AJIO UX</a>
+        <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"
+            id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Women</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Men</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kids</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Footwear</a>
+                </li>
+            </ul>
+            <form class="d-flex me-3">
+                <input
+                    class="form-control"
+                    type="search"
+                    placeholder="Search products">
+            </form>
+            <a href="#" class="me-3">
+                <div class="position-relative me-3">
+                    <i class="bi bi-heart fs-4"></i>
+                    <span
+                        id="wishlist-count"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </div>
+            </a>
+            <a href="#"><i class="bi bi-cart fs-4"></i></a>
+        </div>
+
+    </div>
+    </nav>
+    <div class="mt-5 pt-3">
+    <div id="offerCarousel" class="carousel slide mt-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+    <button type="button"
+            data-bs-target="#offerCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true">
+    </button>
+    <button type="button"
+            data-bs-target="#offerCarousel"
+            data-bs-slide-to="1">
+    </button>
+    <button type="button"
+            data-bs-target="#offerCarousel"
+            data-bs-slide-to="2">
+    </button>
+    <button type="button"
+            data-bs-target="#offerCarousel"
+            data-bs-slide-to="3">
+    </button>
+    <button type="button"
+            data-bs-target="#offerCarousel"
+            data-bs-slide-to="4">
+    </button>
+</div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/vanheusen.webp"
+            class="d-block w-100"
+            alt="AJIO App Offer">
+        </div>
+        <div class="carousel-item">
+            <div class="bg-danger text-white text-center carousel-content">
+                <h2>Summer Sale</h2>
+                <p>Up to 70% Off on Fashion</p>
+                <button class="btn btn-light">Shop Now</button>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/appad.jpg"
+            class="d-block w-100"
+            alt="AJIO App Offer">
+        </div>
+        <div class="carousel-item">
+            <img src="images/campus.webp"
+            class="d-block w-100"
+            alt="AJIO App Offer">
+        </div>
+        <div class="carousel-item">
+            <img src="images/biba.jpg"
+            class="d-block w-100"
+            alt="AJIO App Offer">
+        </div>
+    </div>
+    <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#offerCarousel"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#offerCarousel"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+    </div>
+    </div>
+    
+    <section class="container my-5">
+    <h2 class="text-center mb-4">Shop By Category</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img
+                    src="images/pexels-ladies.jpg"
+                    class="card-img-top category-img"
+                    alt="Women Fashion">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        Women
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img
+                    src="images/pexels-men.jpg" class="card-img-top category-img"
+                    alt="Men Fashion">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        Men
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img
+                    src="images/pexels-shoes.jpg"
+                    class="card-img-top category-img"
+                    alt="Foot Fashion">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        Footwear
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img
+                    src="images/pexels-watches.jpg"
+                    class="card-img-top category-img"
+                    alt="Accessories">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        Accessories
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </section>
+    <section class="container my-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row g-4">
+        <!-- Product 1 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/tshirt.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Short Sleeve Polo Tshirt</h5>
+                    <p class="product-brand">SHEIN</p>
+                    <p class="product-price">₹699</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/checkered.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Checked Tailored Fit Shirt</h5>
+                    <p class="product-brand">U.S.POLO</p>
+                    <p class="product-price">₹1,040</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/sherwani.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Kurta Set Printed Nehru Jacket</h5>
+                    <p class="product-brand">KISAH</p>
+                    <p class="product-price">₹5,999</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/quilted-sweats.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Quilted Sweatshirt with Pocket</h5>
+                    <p class="product-brand">TEAM SPIRIT</p>
+                    <p class="product-price">₹175</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/coordset.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Floral Print Kurta with Palazzo</h5>
+                    <p class="product-brand">MYRIE</p>
+                    <p class="product-price">₹400</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/crab-kids-dress.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Crab All-Over Dress</h5>
+                    <p class="product-brand">FRENDZ</p>
+                    <p class="product-price">₹305</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 7 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/bangles.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Pack of 2 Silver, Studded Bangles</h5>
+                    <p class="product-brand">PARI</p>
+                    <p class="product-price">₹423</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Product 8 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm position-relative">
+                <button
+                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <img
+                    src="images/shoes.avif"
+                    class="card-img-top">
+                <div class="card-body">
+                    <h5 class="product-name">Men Novablast Running Shoes</h5>
+                    <p class="product-brand">ASICS</p>
+                    <p class="product-price">₹10,499</p>
+                    <button class="btn btn-dark w-100">Add To Cart</button>
+                    <button
+                        class="btn btn-outline-secondary w-100 mt-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productModal">
+                            Quick View
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-brand">SHEIN</h5>
+                <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-md-7">
+                    <img
+                    src="images/tshirt.avif"
+                    class="img-fluid rounded modal-product-image">
+                    </div>
+                    <div class="col-md-5">
+                        <h2>Short Sleeve Polo Tshirt</h2>
+                        <p class="product-brand">SHEIN</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="badge bg-success px-3 py-2 me-2">
+                                4.5
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <small class="text-muted">
+                                218 Ratings
+                            </small>
+                        </div>
+                        <h3 class="text-success">₹699</h3>
+                        <p class="text-muted mb-4">
+                        Comfortable casual polo t-shirt
+                        for everyday wear.</p>
+                        <p class="fw-semibold mt-4 mb-2">Select Size</p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-secondary rounded-circle size-btn">S</button>
+                            <button class="btn btn-outline-secondary rounded-circle size-btn">M</button>
+                            <button class="btn btn-outline-secondary rounded-circle size-btn">L</button>
+                            <button class="btn btn-outline-secondary rounded-circle size-btn">XL</button>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-4">
+                                <button class="btn btn-outline-danger w-100">
+                                    <i class="bi bi-heart"></i>
+                                    Wishlist
+                                </button>
+                            </div>
+                            <div class="col-8">
+                                <button class="btn cart-btn w-100">
+                                    <i class="bi bi-cart"></i>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-3">
+                            <a
+                            href="https://www.ajio.com/shein-shein-medium-length-short-sleeve-self-design-polo-tshirt/p/443397620_green"
+                            target="_blank"
+                            class="view-details-btn btn w-100 mt-3">
+                            View Product Details →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
