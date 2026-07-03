@@ -147,7 +147,8 @@ quickViewButtons.forEach(button => {
 wishlistButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         const icon = button.querySelector("i");
-        const product = products[index];
+        const id = parseInt(button.dataset.id);
+        const product = products.find(p => p.id === id);
 
         if (icon.classList.contains("bi-heart")) {
             icon.classList.remove("bi-heart");
@@ -172,7 +173,8 @@ wishlistButtons.forEach((button, index) => {
 });
 cartButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        const product = products[index];
+        const id = parseInt(button.closest(".card").dataset.id);
+        const product = products.find(p => p.id === id);
         const exists = cart.some(item => item.id === product.id);
         if (!exists) {
             cart.push(product);
@@ -188,21 +190,23 @@ cartButtons.forEach((button, index) => {
         console.log(cart);
     });
 });
-modalCartBtn.onclick = () => {
-    if (!currentProduct) return;
-    const exists = cart.some(item => item.id === currentProduct.id);
-    if (!exists) {
-        cart.push(currentProduct);
-        localStorage.setItem("cart",JSON.stringify(cart));
-        cartCounter.innerText = cart.length;
-        updateCartPreview();
-    }
-    modalCartBtn.innerHTML ='<i class="bi bi-check-lg"></i> Added';
-    setTimeout(() => {
-        modalCartBtn.innerHTML ='<i class="bi bi-cart"></i> Add To Cart';
-    }, 1500);
-    console.log(cart);
-};
+if (modalCartBtn) {
+    modalCartBtn.onclick = () => {
+        if (!currentProduct) return;
+        const exists = cart.some(item => item.id === currentProduct.id);
+        if (!exists) {
+            cart.push(currentProduct);
+            localStorage.setItem("cart",JSON.stringify(cart));
+            cartCounter.innerText = cart.length;
+            updateCartPreview();
+        }
+        modalCartBtn.innerHTML ='<i class="bi bi-check-lg"></i> Added';
+        setTimeout(() => {
+            modalCartBtn.innerHTML ='<i class="bi bi-cart"></i> Add To Cart';
+        }, 1500);
+        console.log(cart);
+    };
+}
 function updateCartPreview() {
     const cartItems = document.getElementById("cart-items");
     const cartTotal = document.getElementById("cart-total");
@@ -254,60 +258,65 @@ function updateCartPreview() {
 
 const cartIcon = document.getElementById("cart-icon");
 const cartPreview = document.getElementById("cart-preview");
-cartIcon.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (cartPreview.style.display === "block") {
-        cartPreview.style.display = "none";
-    }
-    else {
-        cartPreview.style.display = "block";
-    }
-});
+if (cartIcon) {
+    cartIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (cartPreview.style.display === "block") {
+            cartPreview.style.display = "none";
+        }
+        else {
+            cartPreview.style.display = "block";
+        }
+    });
+}
 document.addEventListener("click", (e) => {
     if (!document.getElementById("cart-container").contains(e.target)) {
         cartPreview.style.display = "none";
     }
 });
-modalWishlistBtn.addEventListener("click", () => {
-    if (!currentProduct) return;
-    const heart = modalWishlistBtn.querySelector("i");
-    const exists = wishlist.some(item => item.id === currentProduct.id);
-    if (exists) {
-        wishlist = wishlist.filter(item => item.id !== currentProduct.id);
-        localStorage.setItem(
-            "wishlist",
-            JSON.stringify(wishlist)
-        );
-        heart.classList.remove("bi-heart-fill");
-        heart.classList.add("bi-heart");
-        heart.style.color = "black";
-    }
-    else {
-        wishlist.push(currentProduct);
-        localStorage.setItem(
-            "wishlist",
-            JSON.stringify(wishlist)
-        );
-        heart.classList.remove("bi-heart");
-        heart.classList.add("bi-heart-fill");
-        heart.style.color = "red";
-    }
-    wishlistCounter.innerText = wishlist.length;
-    const cardHeart = document.querySelector(
-    `.wishlist-btn[data-id="${currentProduct.id}"] i`
-    );
-    if (cardHeart) {
-        if (wishlist.some(item => item.id === currentProduct.id)) {
-            cardHeart.classList.remove("bi-heart");
-            cardHeart.classList.add("bi-heart-fill");
-            cardHeart.style.color = "red";
-        } else {
-            cardHeart.classList.remove("bi-heart-fill");
-            cardHeart.classList.add("bi-heart");
-            cardHeart.style.color = "black";
+if (modalWishlistBtn) {
+    modalWishlistBtn.addEventListener("click", () => {
+        if (!currentProduct) return;
+        const heart = modalWishlistBtn.querySelector("i");
+        const exists = wishlist.some(item => item.id === currentProduct.id);
+        if (exists) {
+            wishlist = wishlist.filter(item => item.id !== currentProduct.id);
+            localStorage.setItem(
+                "wishlist",
+                JSON.stringify(wishlist)
+            );
+            heart.classList.remove("bi-heart-fill");
+            heart.classList.add("bi-heart");
+            heart.style.color = "black";
         }
-    }
-});
+        else {
+            wishlist.push(currentProduct);
+            localStorage.setItem(
+                "wishlist",
+                JSON.stringify(wishlist)
+            );
+            heart.classList.remove("bi-heart");
+            heart.classList.add("bi-heart-fill");
+            heart.style.color = "red";
+        }
+        wishlistCounter.innerText = wishlist.length;
+        const cardHeart = document.querySelector(
+        `.wishlist-btn[data-id="${currentProduct.id}"] i`
+        );
+        if (cardHeart) {
+            if (wishlist.some(item => item.id === currentProduct.id)) {
+                cardHeart.classList.remove("bi-heart");
+                cardHeart.classList.add("bi-heart-fill");
+                cardHeart.style.color = "red";
+            } else {
+                cardHeart.classList.remove("bi-heart-fill");
+                cardHeart.classList.add("bi-heart");
+                cardHeart.style.color = "black";
+            }
+        }
+    });
+}
+refreshWishlistIcons();
 wishlistCounter.innerText = wishlist.length;
 cartCounter.innerText = cart.length;
 updateCartPreview();
@@ -367,16 +376,7 @@ function attachWishlistEvents() {
                 "wishlist",
                 JSON.stringify(wishlist)
             );
-            wishlistButtons.forEach((button, index) => {
-                const product = products[index];
-                const icon = button.querySelector("i");
-
-                if (wishlist.some(item => item.id === product.id)) {
-                    icon.classList.remove("bi-heart");
-                    icon.classList.add("bi-heart-fill");
-                    icon.style.color = "red";
-                }
-            });
+            refreshWishlistIcons();
             wishlistCounter.innerText = wishlist.length;
             renderWishlist();
         });
@@ -399,3 +399,18 @@ function attachWishlistEvents() {
     });
 }
 renderWishlist();
+function refreshWishlistIcons() {
+    wishlistButtons.forEach(button => {
+        const id = parseInt(button.dataset.id);
+        const icon = button.querySelector("i");
+        if (wishlist.some(item => item.id === id)) {
+            icon.classList.remove("bi-heart");
+            icon.classList.add("bi-heart-fill");
+            icon.style.color = "red";
+        } else {
+            icon.classList.remove("bi-heart-fill");
+            icon.classList.add("bi-heart");
+            icon.style.color = "black";
+        }
+    });
+}
