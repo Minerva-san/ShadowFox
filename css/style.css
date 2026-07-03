@@ -146,3 +146,18 @@
     background:#7c5f24;
     color:white;
 }
+
+.footer-link{
+    color:#d6d6d6;
+    text-decoration:none;
+    transition:.3s;
+}
+.footer-link:hover{
+    color:#7c5f24;
+}
+footer i{
+    transition:.3s;
+}
+footer i:hover{
+    color:#7c5f24;
+}

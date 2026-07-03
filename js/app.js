@@ -96,14 +96,15 @@ const products = [
     link:"https://www.ajio.com/asics-men-novablast-5-running-shoes/p/469798961_blue?"
 }
 ];
-let wishlist = [];
-let cart = [];
+let wishlist =JSON.parse(localStorage.getItem("wishlist")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let currentProduct = null;
 
 const wishlistButtons = document.querySelectorAll(".wishlist-btn");
 const wishlistCounter = document.getElementById("wishlist-count");
 const quickViewButtons = document.querySelectorAll(".quick-view-btn");
 const modalCartBtn = document.getElementById("modal-add-cart");
+const modalWishlistBtn = document.querySelector(".modal-wishlist-btn");
 const cartButtons = document.querySelectorAll(".add-cart-btn");
 const cartCounter = document.getElementById("cart-count");
 
@@ -112,6 +113,18 @@ quickViewButtons.forEach(button => {
         const id = parseInt(button.dataset.id);
         const product = products.find(p => p.id === id);
         currentProduct = product;
+        const heart = modalWishlistBtn.querySelector("i");
+        const exists = wishlist.some(item => item.id === currentProduct.id);
+        if (exists) {
+            heart.classList.remove("bi-heart");
+            heart.classList.add("bi-heart-fill");
+            heart.style.color = "red";
+        }
+        else{
+            heart.classList.remove("bi-heart-fill");
+            heart.classList.add("bi-heart");
+            heart.style.color = "black";
+        }
         document.getElementById("modal-name").innerText =
         product.name;
         document.getElementById("modal-brand").innerText =
@@ -141,12 +154,17 @@ wishlistButtons.forEach((button, index) => {
             icon.classList.add("bi-heart-fill");
             icon.style.color = "red";
             wishlist.push(product);
+            localStorage.setItem(
+                "wishlist",
+                JSON.stringify(wishlist)
+            );
         }
         else {
             icon.classList.remove("bi-heart-fill");
             icon.classList.add("bi-heart");
             icon.style.color = "black";
             wishlist = wishlist.filter(item => item.id !== product.id);
+            localStorage.setItem("wishlist",JSON.stringify(wishlist));
         }
         wishlistCounter.innerText = wishlist.length;
         console.log(wishlist);
@@ -156,9 +174,9 @@ cartButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         const product = products[index];
         const exists = cart.some(item => item.id === product.id);
-
         if (!exists) {
             cart.push(product);
+            localStorage.setItem("cart",JSON.stringify(cart));
         }
         button.innerHTML ='<i class="bi bi-check-lg"></i> Added';
         setTimeout(() => {
@@ -175,6 +193,7 @@ modalCartBtn.onclick = () => {
     const exists = cart.some(item => item.id === currentProduct.id);
     if (!exists) {
         cart.push(currentProduct);
+        localStorage.setItem("cart",JSON.stringify(cart));
         cartCounter.innerText = cart.length;
         updateCartPreview();
     }
@@ -223,6 +242,10 @@ function updateCartPreview() {
         button.addEventListener("click", () => {
             const id = parseInt(button.dataset.id);
             cart = cart.filter(item => item.id !== id);
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
             cartCounter.innerText = cart.length;
             updateCartPreview();
         });
@@ -245,3 +268,134 @@ document.addEventListener("click", (e) => {
         cartPreview.style.display = "none";
     }
 });
+modalWishlistBtn.addEventListener("click", () => {
+    if (!currentProduct) return;
+    const heart = modalWishlistBtn.querySelector("i");
+    const exists = wishlist.some(item => item.id === currentProduct.id);
+    if (exists) {
+        wishlist = wishlist.filter(item => item.id !== currentProduct.id);
+        localStorage.setItem(
+            "wishlist",
+            JSON.stringify(wishlist)
+        );
+        heart.classList.remove("bi-heart-fill");
+        heart.classList.add("bi-heart");
+        heart.style.color = "black";
+    }
+    else {
+        wishlist.push(currentProduct);
+        localStorage.setItem(
+            "wishlist",
+            JSON.stringify(wishlist)
+        );
+        heart.classList.remove("bi-heart");
+        heart.classList.add("bi-heart-fill");
+        heart.style.color = "red";
+    }
+    wishlistCounter.innerText = wishlist.length;
+    const cardHeart = document.querySelector(
+    `.wishlist-btn[data-id="${currentProduct.id}"] i`
+    );
+    if (cardHeart) {
+        if (wishlist.some(item => item.id === currentProduct.id)) {
+            cardHeart.classList.remove("bi-heart");
+            cardHeart.classList.add("bi-heart-fill");
+            cardHeart.style.color = "red";
+        } else {
+            cardHeart.classList.remove("bi-heart-fill");
+            cardHeart.classList.add("bi-heart");
+            cardHeart.style.color = "black";
+        }
+    }
+});
+wishlistCounter.innerText = wishlist.length;
+cartCounter.innerText = cart.length;
+updateCartPreview();
+
+const wishlistContainer = document.getElementById("wishlist-container");
+const emptyWishlist = document.getElementById("empty-wishlist");
+
+function renderWishlist() {
+    if (!wishlistContainer) return;
+    wishlistContainer.innerHTML = "";
+    if (wishlist.length === 0) {
+        emptyWishlist.style.display = "block";
+        return;
+    }
+    emptyWishlist.style.display = "none";
+    wishlist.forEach(product => {
+        wishlistContainer.innerHTML += `
+        <div class="card shadow-sm mb-4">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-3 text-center">
+                    <img src="${product.image}"class="img-fluid p-3"style="max-height:220px">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="product-brand">${product.brand}</p>
+                        <h4>${product.name}</h4>
+                        <p>⭐ ${product.rating}</p>
+                        <h3>₹${product.price}</h3>
+                        <span class="badge bg-success">In Stock</span>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button
+                        class="btn btn-dark w-75 mb-2 move-cart"
+                        data-id="${product.id}">
+                        Move To Cart
+                    </button>
+                    <button
+                        class="btn btn-outline-danger w-75 remove-wishlist"
+                        data-id="${product.id}">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+        `;
+    });
+    attachWishlistEvents();
+}
+
+function attachWishlistEvents() {
+    document.querySelectorAll(".remove-wishlist").forEach(button => {
+        button.addEventListener("click", () => {
+            const id = parseInt(button.dataset.id);
+            wishlist = wishlist.filter(item => item.id !== id);
+            localStorage.setItem(
+                "wishlist",
+                JSON.stringify(wishlist)
+            );
+            wishlistButtons.forEach((button, index) => {
+                const product = products[index];
+                const icon = button.querySelector("i");
+
+                if (wishlist.some(item => item.id === product.id)) {
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill");
+                    icon.style.color = "red";
+                }
+            });
+            wishlistCounter.innerText = wishlist.length;
+            renderWishlist();
+        });
+    });
+    document.querySelectorAll(".move-cart").forEach(button => {
+        button.addEventListener("click", () => {
+            const id = parseInt(button.dataset.id);
+            const product = wishlist.find(item => item.id === id);
+            if (!cart.some(item => item.id === id)) {
+                cart.push(product);
+                localStorage.setItem(
+                    "cart",
+                    JSON.stringify(cart)
+                );
+            }
+            cartCounter.innerText = cart.length;
+            updateCartPreview();
+            alert("Moved to cart.");
+        });
+    });
+}
+renderWishlist();
