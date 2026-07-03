@@ -4,7 +4,7 @@ Pages:  -Home Page
         -Wishlist
         -Checkout
 
-1. ADS OVERLOADED HOMEPAGE ----------------------------------------
+1. ADS OVERLOADED HOMEPAGE ----------------------------------------✅
 Evidence:
 Hero banner, Bank offer banner, Category banner, Referral banner, Discount banner, More discount
 Problem:
@@ -12,7 +12,7 @@ Users visit to: Find, Compare , Buy products (Not to scroll through 25 advertise
 Enhancement: Create Unified Smart Offer Carousel
 Benefit: less distraction, cleaner ui
 
-2. TOO MUCH SCROLL TO SEE PRODUCTS ----------------------------------------
+2. TOO MUCH SCROLL TO SEE PRODUCTS ----------------------------------------✅
 You scroll through:
 Fashion Headliners, Top Trends, Exclusive Menswear, Westernwear, Footwear, Ethnicwear
 before reaching meaningful product browsing.
@@ -91,7 +91,7 @@ Wishlist
 Quick Add
 Benefits: Fewer clicks
 
-8: QUICK VIEW ----------------------------------------
+8: QUICK VIEW ----------------------------------------✅
 Hover: Quick View
 Popup:
 Sizes
@@ -119,7 +119,7 @@ Recent Searches
 Trending Products
 Benefits: Better engagement
 
-11: MINI CART ----------------------------------------
+11: MINI CART ----------------------------------------✅
 Instead of opening cart page:
 Hover Cart
 Show:
@@ -135,7 +135,7 @@ directly in cart.
 Benefits:
 Faster updates
 
-13: SINGLE PAGE CHECKOUT ----------------------------------------
+13: SINGLE PAGE CHECKOUT ----------------------------------------✅
 Instead of:
 Address
 ↓
@@ -150,12 +150,12 @@ Order Summary
 all visible together.
 Benefits: Less friction
 
-14: PROGRESS INDICATOR ----------------------------------------
+14: PROGRESS INDICATOR ----------------------------------------✅
 Cart → Checkout → Done
 Benefits:
 User knows where they are
 
-15: DELIVERY ESTIMATE ----------------------------------------
+15: DELIVERY ESTIMATE ----------------------------------------✅
 Show:
 Expected Delivery:
 June 12-14
@@ -169,7 +169,7 @@ Always visible.
 Benefits:
 Easier filtering on phones
 
-18: WEAK WISHLIST --------------------
+18: WEAK WISHLIST --------------------✅
 Your wishlist screenshot shows only:
 Image
 Name
@@ -179,7 +179,7 @@ Size selected
 Stock status
 Price drop alerts
 
-11. FOOTER IS MASSIVE ----------------------------------------
+11. FOOTER IS MASSIVE ----------------------------------------✅
 Problem:
 Information overload.
 Enhancement:
@@ -196,7 +196,7 @@ Add:
 Recently Viewed
 right above footer.
 
-13. QUICK ADD TO WISHLIST ----------------------------------------
+13. QUICK ADD TO WISHLIST ----------------------------------------✅
 Problem: Users must either:
 Open the product popup, then add to wishlist
 Open the product page, then add to wishlist

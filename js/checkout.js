@@ -1,4 +1,4 @@
-let cart =JSON.parse(localStorage.getItem("cart")) || [];
+cart =JSON.parse(localStorage.getItem("cart")) || [];
 const items =document.getElementById("checkout-items");
 const subtotal =document.getElementById("subtotal");
 const total =document.getElementById("grand-total");
@@ -23,20 +23,14 @@ total.innerHTML = "₹"+(sum+20);
 
 document
 .getElementById("place-order")
-.addEventListener("click",()=>{
-
-Swal.fire({
-    icon: "success",
-    title: "Order Placed!",
-    text: "Thank you for shopping with AJIO UX.",
-    confirmButtonColor: "#7c5f24"
-}).then(() => {
-    localStorage.removeItem("cart");
-    window.location.href = "index.html";
-});
-
-localStorage.removeItem("cart");
-
-window.location.href="index.html";
-
+.addEventListener("click", () => {
+    Swal.fire({
+        icon: "success",
+        title: "Order Placed!",
+        text: "Thank you for shopping with AJIO UX.",
+        confirmButtonColor: "#7c5f24"
+    }).then(() => {
+        localStorage.removeItem("cart");
+        window.location.href = "index.html";
+    });
 });
