@@ -176,11 +176,6 @@ document.addEventListener("click", e => {
 });
 function applyFilters() {
     let filteredProducts = [...products];
-    // Search
-    // const search = document
-    //     .getElementById("search-products")
-    //     .value
-    //     .toLowerCase();
     const search = searchInput.value.toLowerCase();
     showSuggestions(search);
     if (search !== "") {
