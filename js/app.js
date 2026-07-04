@@ -153,10 +153,12 @@ const cartButtons = document.querySelectorAll(".add-cart-btn");
 const cartCounter = document.getElementById("cart-count");
 
 const modalLink = document.getElementById("modal-link");
-                modalLink.addEventListener("click", () => {
-            if(!currentProduct) return;
-            saveRecentlyViewed(currentProduct.id);
+if (modalLink) {
+    modalLink.addEventListener("click", () => {
+        if(!currentProduct) return;
+        saveRecentlyViewed(currentProduct.id);
         });
+    }
 
 quickViewButtons.forEach(button => {
     button.addEventListener("click", () => {
