@@ -9,7 +9,9 @@ const products = [
     image: "images/tshirt.avif",
     description: "Comfortable casual polo t-shirt for everyday wear.",
     category: "Men",
-    link: "https://www.ajio.com/shein-shein-medium-length-short-sleeve-self-design-polo-tshirt/p/443397620_green?"
+    link: "https://www.ajio.com/shein-shein-medium-length-short-sleeve-self-design-polo-tshirt/p/443397620_green?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 2,
@@ -21,7 +23,9 @@ const products = [
     image: "images/checkered.avif",
     description: "Comfortable formal shirt for everyday wear.",
     category: "Men",
-    link:"https://www.ajio.com/u-s-polo-assn-men-checked-tailored-fit-shirt-with-patch-pocket/p/469738496_navy?"
+    link:"https://www.ajio.com/u-s-polo-assn-men-checked-tailored-fit-shirt-with-patch-pocket/p/469738496_navy?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 3,
@@ -33,7 +37,9 @@ const products = [
     image: "images/sherwani.avif",
     description: "Comfortable casuals for everyday wear.",
     category: "Men",
-    link:"https://www.ajio.com/kisah-men-regular-fit-3-piece-kurta-pyjama-set-with-printed-nehru-jacket-/p/702611922_multi?"
+    link:"https://www.ajio.com/kisah-men-regular-fit-3-piece-kurta-pyjama-set-with-printed-nehru-jacket-/p/702611922_multi?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 4,
@@ -45,7 +51,9 @@ const products = [
     image: "images/quilted-sweats.avif",
     description: "Comfortable casuals for everyday wear.",
     category: "Kids",
-    link:"https://www.ajio.com/kb-team-spirit-boys-quilted-sweatshirt-with-flap-pocket/p/443090063_blue?"
+    link:"https://www.ajio.com/kb-team-spirit-boys-quilted-sweatshirt-with-flap-pocket/p/443090063_blue?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 5,
@@ -57,7 +65,9 @@ const products = [
     image: "images/coordset.avif",
     description: "Comfortable casuals for everyday wear.",
     category: "Women",
-    link:"https://www.ajio.com/myrie-women-floral-print-kurta-with-palazzo-co-ord-set/p/702936716_blue?"
+    link:"https://www.ajio.com/myrie-women-floral-print-kurta-with-palazzo-co-ord-set/p/702936716_blue?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 6,
@@ -69,7 +79,9 @@ const products = [
     image: "images/crab-kids-dress.avif",
     description: "Comfortable casuals for everyday wear.",
     category: "Kids",
-    link:"https://www.ajio.com/inf-frendz-seer-sucker-crab-all-over-dress/p/443107629_blue?"
+    link:"https://www.ajio.com/inf-frendz-seer-sucker-crab-all-over-dress/p/443107629_blue?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 7,
@@ -81,7 +93,9 @@ const products = [
     image: "images/bangles.avif",
     description: "Ethnic Accessories for everyday wear.",
     category: "Accessories",
-    link:"https://www.ajio.com/the-pari-pack-of-2-women-silver-plated-stone-studded-bangles/p/702241674_multi?"
+    link:"https://www.ajio.com/the-pari-pack-of-2-women-silver-plated-stone-studded-bangles/p/702241674_multi?",
+    discount:40,
+    popularity:96,
 },
 {
     id: 8,
@@ -93,7 +107,9 @@ const products = [
     image: "images/shoes.avif",
     description: "Comfortable sporties for everyday wear.",
     category: "Footwear",
-    link:"https://www.ajio.com/asics-men-novablast-5-running-shoes/p/469798961_blue?"
+    link:"https://www.ajio.com/asics-men-novablast-5-running-shoes/p/469798961_blue?",
+    discount:40,
+    popularity:96,
 }
 ];
 let wishlist =JSON.parse(localStorage.getItem("wishlist")) || [];
