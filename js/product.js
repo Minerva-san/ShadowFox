@@ -46,8 +46,14 @@ function renderProducts(productList) {
         </div>
         `;
     });
+    document.querySelectorAll(".product-link").forEach(link => {
+        link.addEventListener("click", () => {
+            saveRecentlyViewed(
+                parseInt(link.dataset.id)
+            );
+        });
+    });
 }
-
 const params = new URLSearchParams(window.location.search);
 const selectedCategory = params.get("category");
 if (selectedCategory) {

@@ -152,6 +152,12 @@ const modalWishlistBtn = document.querySelector(".modal-wishlist-btn");
 const cartButtons = document.querySelectorAll(".add-cart-btn");
 const cartCounter = document.getElementById("cart-count");
 
+const modalLink = document.getElementById("modal-link");
+                modalLink.addEventListener("click", () => {
+            if(!currentProduct) return;
+            saveRecentlyViewed(currentProduct.id);
+        });
+
 quickViewButtons.forEach(button => {
     button.addEventListener("click", () => {
         const id = parseInt(button.dataset.id);
@@ -169,22 +175,15 @@ quickViewButtons.forEach(button => {
             heart.classList.add("bi-heart");
             heart.style.color = "black";
         }
-        document.getElementById("modal-name").innerText =
-        product.name;
-        document.getElementById("modal-brand").innerText =
-        product.brand;
-        document.getElementById("modal-price").innerText =
-        "₹" + product.price;
-        document.getElementById("modal-description").innerText =
-        product.description;
-        document.getElementById("modal-rating").innerText =
-        product.rating;
-        document.getElementById("modal-reviews").innerText =
-        product.reviews + " Ratings";
-        document.getElementById("modal-image").src =
-        product.image;
-        document.getElementById("modal-link").href =
-        product.link;
+        document.getElementById("modal-name").innerText = product.name;
+        document.getElementById("modal-brand").innerText = product.brand;
+        document.getElementById("modal-price").innerText = "₹" + product.price;
+        document.getElementById("modal-description").innerText = product.description;
+        document.getElementById("modal-rating").innerText = product.rating;
+        document.getElementById("modal-reviews").innerText = product.reviews + " Ratings";
+        document.getElementById("modal-image").src = product.image;
+        document.getElementById("modal-link").href = product.link;
+        
     });
 });
 wishlistButtons.forEach((button, index) => {
@@ -488,19 +487,19 @@ function saveRecentlyViewed(id){
     let recent = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
     recent = recent.filter(item=>item.id!==id);
     recent.unshift(product);
-    recent = recent.slice(0,5);
+    recent = recent.slice(0,20);
     localStorage.setItem(
         "recentlyViewed",
         JSON.stringify(recent)
     );
 }
-document.querySelectorAll(".product-link").forEach(link=>{
-    link.addEventListener("click",()=>{
-        saveRecentlyViewed(
-            parseInt(link.dataset.id)
-        );
-    });
-});
+// document.querySelectorAll(".product-link").forEach(link=>{
+//     link.addEventListener("click",()=>{
+//         saveRecentlyViewed(
+//             parseInt(link.dataset.id)
+//         );
+//     });
+// });
 document
 .getElementById("recent-prev")
 ?.addEventListener("click",()=>{
