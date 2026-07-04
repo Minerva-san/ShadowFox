@@ -12,48 +12,117 @@ function renderProducts(productList) {
     if (!productsGrid) return;
     productsGrid.innerHTML = "";
     productCount.innerText = productList.length;
-
     productList.forEach(product => {
+        const inWishlist = wishlist.some(item => item.id === product.id);
         productsGrid.innerHTML += `
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-sm position-relative">
-                <button
-                    class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn"
-                    data-id="${product.id}">
-                    <i class="bi bi-heart"></i>
-                </button>
-                <a href="${product.link}"
-                    target="_blank"
-                    class="product-link"
-                    data-id="${product.id}">
-                    <img
-                        src="${product.image}"
-                        class="card-img-top"
-                        style="height:300px; object-fit:cover;">
-                </a>
-                <div class="card-body">
-                    <h5>${product.name}</h5>
-                    <p class="product-brand">${product.brand}</p>
-                    <div class="mb-2">
-                        <span class="badge bg-success">★ ${product.rating}</span>
-                    </div>
-                    <h5>₹${product.price}</h5>
-                    <button class="btn cart-btn w-100 mt-2">
-                        Add To Cart
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm position-relative">
+                    <button
+                        class="btn btn-light position-absolute top-0 end-0 m-2 wishlist-btn"
+                        data-id="${product.id}">
+                        <i class="bi ${inWishlist ? "bi-heart-fill text-danger" : "bi-heart"}"></i>
                     </button>
+                    <a
+                        href="${product.link}"
+                        target="_blank"
+                        onclick="saveRecentlyViewed(${product.id})">
+                        <img
+                            src="${product.image}"
+                            class="card-img-top"
+                            style="height:300px; object-fit:cover;">
+                    </a>
+                    <div class="card-body">
+                        <h5>${product.name}</h5>
+                        <p class="product-brand">${product.brand}</p>
+                        <span class="badge bg-success">
+                            ★ ${product.rating}
+                        </span>
+                        <h5 class="mt-2">
+                            ₹${product.price}
+                        </h5>
+                        <button
+                            class="btn cart-btn w-100 mt-2 add-cart-btn"
+                            data-id="${product.id}">
+                            Add To Cart
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        `;
+            `;
+        document.querySelectorAll(".wishlist-btn").forEach(button => {
+
+    const id = parseInt(button.dataset.id);
+
+    const icon = button.querySelector("i");
+
+    if (wishlist.some(item => item.id === id)) {
+
+        icon.classList.remove("bi-heart");
+
+        icon.classList.add("bi-heart-fill");
+
+        icon.style.color = "red";
+
+    }
+
+});
     });
-    document.querySelectorAll(".product-link").forEach(link => {
-        link.addEventListener("click", () => {
-            saveRecentlyViewed(
-                parseInt(link.dataset.id)
+    // document.querySelectorAll(".product-link").forEach(link => {
+    //     link.addEventListener("click", () => {
+    //         saveRecentlyViewed(
+    //             parseInt(link.dataset.id)
+    //         );
+    //     });
+    // });
+    attachProductEvents();
+}
+function attachProductEvents() {
+    document.querySelectorAll(".wishlist-btn").forEach(button => {
+        button.onclick = () => {
+            console.log("wishlist clicked");
+            const id = parseInt(button.dataset.id);
+            const product = products.find(p => p.id === id);
+            const icon = button.querySelector("i");
+            const exists = wishlist.some(item => item.id === id);
+            if (exists) {
+                wishlist = wishlist.filter(item => item.id !== id);
+                icon.classList.remove("bi-heart-fill","text-danger");
+                icon.classList.add("bi-heart");
+            }
+            else {
+                wishlist.push(product);
+                icon.classList.remove("bi-heart");
+                icon.classList.add("bi-heart-fill","text-danger");
+            }
+            localStorage.setItem(
+                "wishlist",
+                JSON.stringify(wishlist)
             );
-        });
+            wishlistCounter.innerText = wishlist.length;
+        };
+    });
+    document.querySelectorAll(".add-cart-btn").forEach(button => {
+        button.onclick = () => {
+            console.log("Cart clicked");
+            const id = parseInt(button.dataset.id);
+            const product = products.find(p => p.id === id);
+            if (!cart.some(item => item.id === id)) {
+                cart.push(product);
+                localStorage.setItem(
+                    "cart",
+                    JSON.stringify(cart)
+                );
+                cartCounter.innerText = cart.length;
+                updateCartPreview();
+            }
+            button.innerHTML = "✓ Added";
+            setTimeout(() => {
+                button.innerHTML = "Add To Cart";
+            },1500);
+        };
     });
 }
+
 const params = new URLSearchParams(window.location.search);
 const selectedCategory = params.get("category");
 if (selectedCategory) {
@@ -67,7 +136,6 @@ if (selectedCategory) {
 categoryFilters.forEach(filter => {
     filter.addEventListener("change", applyFilters);
 });
-
 suggestions.addEventListener("click", e => {
     const button = e.target.closest(".suggestion-item");
     if (!button) return;
@@ -106,7 +174,6 @@ document.addEventListener("click", e => {
         suggestions.style.display = "none";
     }
 });
-
 function applyFilters() {
     let filteredProducts = [...products];
     // Search
