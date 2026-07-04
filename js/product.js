@@ -22,10 +22,15 @@ function renderProducts(productList) {
                     data-id="${product.id}">
                     <i class="bi bi-heart"></i>
                 </button>
-                <img
-                    src="${product.image}"
-                    class="card-img-top"
-                    style="height:300px; object-fit:cover;">
+                <a href="${product.link}"
+                    target="_blank"
+                    class="product-link"
+                    data-id="${product.id}">
+                    <img
+                        src="${product.image}"
+                        class="card-img-top"
+                        style="height:300px; object-fit:cover;">
+                </a>
                 <div class="card-body">
                     <h5>${product.name}</h5>
                     <p class="product-brand">${product.brand}</p>

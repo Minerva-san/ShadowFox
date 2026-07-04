@@ -187,7 +187,6 @@ quickViewButtons.forEach(button => {
         product.link;
     });
 });
-
 wishlistButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         const icon = button.querySelector("i");
@@ -410,7 +409,6 @@ function renderWishlist() {
     });
     attachWishlistEvents();
 }
-
 function attachWishlistEvents() {
     document.querySelectorAll(".remove-wishlist").forEach(button => {
         button.addEventListener("click", () => {
@@ -458,3 +456,66 @@ function refreshWishlistIcons() {
         }
     });
 }
+
+//rrecently viwed
+let currentIndex = 0;
+
+function renderRecentlyViewed(){
+    const container = document.getElementById("recently-viewed");
+    if(!container) return;
+    const recent = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    container.innerHTML="";
+    recent.slice(currentIndex,currentIndex+5).forEach(product=>{
+        container.innerHTML += `
+        <div class="card shadow-sm" style="min-width:220px">
+            <a href="${product.link}" target="_blank">
+                <img
+                    src="${product.image}"
+                    class="card-img-top"
+                    style="height:220px;object-fit:cover;">
+            </a>
+            <div class="card-body">
+                <p class="product-brand">${product.brand}</p>
+                <h6>${product.name}</h6>
+                <h5>₹${product.price}</h5>
+            </div>
+        </div>
+        `;
+    });
+}
+function saveRecentlyViewed(id){
+    const product = products.find(p=>p.id===id);
+    let recent = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    recent = recent.filter(item=>item.id!==id);
+    recent.unshift(product);
+    recent = recent.slice(0,5);
+    localStorage.setItem(
+        "recentlyViewed",
+        JSON.stringify(recent)
+    );
+}
+document.querySelectorAll(".product-link").forEach(link=>{
+    link.addEventListener("click",()=>{
+        saveRecentlyViewed(
+            parseInt(link.dataset.id)
+        );
+    });
+});
+document
+.getElementById("recent-prev")
+?.addEventListener("click",()=>{
+    if(currentIndex>0){
+        currentIndex--;
+        renderRecentlyViewed();
+    }
+});
+document
+.getElementById("recent-next")
+?.addEventListener("click",()=>{
+    const recent = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+    if(currentIndex<recent.length-5){
+        currentIndex++;
+        renderRecentlyViewed();
+    }
+});
+renderRecentlyViewed();

@@ -484,7 +484,25 @@
         </div>
     </div>
     </section>
-    
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">
+                Recently Viewed
+            </h2>
+            <div>
+                <button class="btn btn-outline-dark me-2" id="recent-prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="btn btn-outline-dark" id="recent-next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <div
+            id="recently-viewed"
+            class="d-flex overflow-hidden gap-3">
+        </div>
+    </section>
     <div class="modal fade" id="productModal" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -547,7 +565,7 @@
         </div>
     </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
     <footer class="bg-dark text-white mt-5 py-5">
